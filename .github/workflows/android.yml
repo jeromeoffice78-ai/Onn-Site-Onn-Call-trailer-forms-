@@ -19,9 +19,10 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - uses: android-actions/setup-android@v3
-      - name: Build APK
-        run: gradle --no-daemon assembleDebug
+      - name: Build offline APK
+        run: |
+          chmod +x ./gradlew 2>/dev/null || true
+          gradle --no-daemon assembleDebug
       - uses: actions/upload-artifact@v4
         with:
           name: Onn-Trailer-Forms-Offline-APK
